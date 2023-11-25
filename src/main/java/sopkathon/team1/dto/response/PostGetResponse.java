@@ -9,6 +9,8 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 public class PostGetResponse {
+    private Long postId;
+
     private String title;
 
     private String content;
@@ -18,6 +20,6 @@ public class PostGetResponse {
     private Long categoryId;
 
     public static PostGetResponse of(Post post) {
-        return new PostGetResponse(post.getTitle(), post.getContent(), post.getCreatedAt(), post.getCategory().getCategoryId());
+        return new PostGetResponse(post.getPostId(), post.getTitle(), post.getContent(), post.getCreatedAt(), post.getCategory().getCategoryId());
     }
 }
