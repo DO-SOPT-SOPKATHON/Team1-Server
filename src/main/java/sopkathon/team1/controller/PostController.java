@@ -29,7 +29,7 @@ public class PostController {
         return ResponseEntity.ok(postService.getPostById(postId));
     }
 
-    @GetMapping("/{categoryId}")
+    @GetMapping("/category/{categoryId}")
     public ResultResponse<List<PostGetResponse>> getPosts(@PathVariable("categoryId") Long categoryId){
         return ResultResponse.of(ResultCode.GET_POSTS_SUCCESS, postService.getPosts(categoryId));
     }

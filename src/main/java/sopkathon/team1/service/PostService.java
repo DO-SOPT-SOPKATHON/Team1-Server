@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import sopkathon.team1.domain.post.Post;
 import sopkathon.team1.domain.review.Review;
 import sopkathon.team1.dto.response.PostResponse;
+import sopkathon.team1.exception.CategoryException;
+import sopkathon.team1.exception.CustomErrorCode;
 import sopkathon.team1.repository.PostRepository;
 import java.time.temporal.ChronoUnit;
 import sopkathon.team1.repository.ReviewRepository;
@@ -54,7 +56,7 @@ public class PostService {
     @Transactional
     public List<PostGetResponse> getPosts(Long categoryId){
         Category category = categoryRepository.findByCategoryId(categoryId);
-        if(category == null) throw new EntityNotFoundException("카테고리가 존재하지 않습니다.");
+        if(category == null) throw new CategoryException(CustomErrorCode.CATEGORY_NOT_FOUND);
         List<Post> posts = postRepository.findAllByCategory(category);
         return posts.stream().map(post -> PostGetResponse.of(post)).toList();
     }
