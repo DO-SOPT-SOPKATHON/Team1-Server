@@ -24,6 +24,11 @@ public class PostController {
         return ResponseEntity.ok(postService.getPostById(postId));
     }
 
+    @GetMapping("/random")
+    public ResponseEntity<PostResponse> getRandomPost() {
+        return ResponseEntity.ok(postService.getRandomPost());
+    }
+
 
     @PostMapping
     public ResponseEntity<PostCreateResponse> create(@RequestBody PostCreateRequest request) {
