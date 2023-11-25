@@ -1,12 +1,19 @@
 package sopkathon.team1.domain.review;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,8 +32,17 @@ public class Review extends BaseEntity {
 
     String content;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_id")
+    private Post post;
+
+    @Column(name = "created_at")
+    private LocalDate createdAt;
+
     @Builder
-    public Review(String content){
+    public Review(String content, Post post){
         this.content = content;
+        this.post = post;
+        this.createdAt = LocalDate.now();
     }
 }
