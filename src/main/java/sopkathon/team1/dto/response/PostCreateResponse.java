@@ -1,10 +1,12 @@
 package sopkathon.team1.dto.response;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.time.LocalDate;
 
 @Data
+@AllArgsConstructor
 public class PostCreateResponse {
     private String title;
 
@@ -12,5 +14,5 @@ public class PostCreateResponse {
 
     private LocalDate createdAt;
 
-    private Long categoryType;
+    private Long categoryId;
 }
