@@ -33,6 +33,8 @@
 
 ## 팀원 소개
 
+![image](https://github.com/DO-SOPT-SOPKATHON/Team1-Server/assets/115079024/321b6ea7-d6be-4a3b-a005-e18bb3cea032)
+
 #### 박희정
 - GET 일기 단건 조회
 - GET 일기 랜덤 단건 조회
