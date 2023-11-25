@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import sopkathon.team1.domain.post.Post;
 import sopkathon.team1.domain.review.Review;
 
-public record PostResponse(int postId,
+public record PostResponse(long postId,
                            String title,
                            String content,
                            LocalDate createdAt,

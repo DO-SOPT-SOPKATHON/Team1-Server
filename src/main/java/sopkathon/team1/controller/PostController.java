@@ -15,9 +15,8 @@ import sopkathon.team1.service.PostService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("BASE_PATH")
+@RequestMapping("/api/post")
 public class PostController {
-    static final String BASE_PATH = "/api/post";
     private final PostService postService;
 
     @GetMapping("{postId}")

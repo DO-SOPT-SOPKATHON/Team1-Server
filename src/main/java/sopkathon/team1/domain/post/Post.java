@@ -39,7 +39,7 @@ public class Post extends BaseEntity {
     public Post(String title, String content, Category category) {
         this.title = title;
         this.content = content;
-        this.createdAt = LocalDate.now();;
+        this.createdAt = LocalDate.now();
         this.category = category;
     }
 }
