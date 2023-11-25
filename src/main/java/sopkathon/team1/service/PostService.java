@@ -4,6 +4,7 @@ package sopkathon.team1.service;
 import jakarta.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Random;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +31,20 @@ public class PostService {
     public PostResponse getPostById(Long postId) {
         Post post = postRepository.findById(postId).orElseThrow(() -> new EntityNotFoundException("해당하는 포스트가 없습니다."));
 
+        LocalDate todayLocalDate = LocalDate.now(); // 현재 날짜
+        int daysDifference = (int)ChronoUnit.DAYS.between(post.getCreatedAt(), todayLocalDate);
+
+        List<Review> reviewList = reviewRepository.findAllReviewByPost(post);
+
+        return PostResponse.of(post, daysDifference, reviewList);
+    }
+
+    public PostResponse getRandomPost() {
+        Random random = new Random();
+        int totalPostNumber = (int)postRepository.count();
+        long randomNumber = random.nextInt(totalPostNumber) + 1;
+
+        Post post = postRepository.findById(randomNumber).orElseThrow(() -> new EntityNotFoundException("해당하는 포스트가 없습니다."));
         LocalDate todayLocalDate = LocalDate.now(); // 현재 날짜
         int daysDifference = (int)ChronoUnit.DAYS.between(post.getCreatedAt(), todayLocalDate);
 
