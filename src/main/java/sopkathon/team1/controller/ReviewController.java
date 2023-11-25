@@ -13,16 +13,15 @@ import sopkathon.team1.service.ReviewService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("BASE_PATH")
+@RequestMapping("/api/review")
 public class ReviewController {
 
-    static final String BASE_PATH = "/api/review";
     private final ReviewService reviewService;
 
     @PostMapping("{postId}")
     public ResponseEntity<Void> postReviewById(@PathVariable Long postId,
                                                @RequestBody ReviewRequest request) {
-        URI location = URI.create(BASE_PATH + "/" + reviewService.postReview(request, postId));
+        URI location = URI.create("/api/review" + "/" + reviewService.postReview(request, postId));
         return ResponseEntity.created(location).build();
     }
 

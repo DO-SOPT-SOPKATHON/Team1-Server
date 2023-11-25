@@ -23,7 +23,9 @@ public class ReviewService {
         Post post = postRepository.findById(postId).orElseThrow(() -> new EntityNotFoundException("해당하는 포스트가 없습니다."));
         Review review = reviewRepository.save(
                 Review.builder()
-                        .content(request.content()).build());
+                        .content(request.content())
+                        .post(post)
+                        .build());
         return review.getId().toString();
     }
 
