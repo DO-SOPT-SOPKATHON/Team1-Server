@@ -28,14 +28,14 @@ public class Category {
     private Long categoryId;
 
     @Enumerated(EnumType.STRING)
-    private CategoryType categoryType;
+    private String categoryName;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Post> posts = new ArrayList<>();
 
     @Builder
-    public Category(CategoryType categoryType) {
-        this.categoryType = categoryType;
+    public Category(String categoryName) {
+        this.categoryName = categoryName;
     }
 
 }
