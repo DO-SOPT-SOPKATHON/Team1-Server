@@ -1,19 +1,14 @@
 package sopkathon.team1.domain.category;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import sopkathon.team1.domain.post.Post;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -24,15 +19,14 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoryId;
 
-    @Enumerated(EnumType.STRING)
-    private CategoryType categoryType;
+    private String categoryName;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private Post post;
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Post> post = new ArrayList<Post>();
 
     @Builder
-    public Category(CategoryType categoryType) {
-        this.categoryType = categoryType;
+    public Category(String categoryName) {
+        this.categoryName = categoryName;
     }
 
 }
