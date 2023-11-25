@@ -33,6 +33,12 @@ public class PostController {
     public ResultResponse<List<PostGetResponse>> getPosts(@PathVariable("categoryId") Long categoryId){
         return ResultResponse.of(ResultCode.GET_POSTS_SUCCESS, postService.getPosts(categoryId));
     }
+    @GetMapping("/random")
+    public ResponseEntity<PostResponse> getRandomPost() {
+        return ResponseEntity.ok(postService.getRandomPost());
+    }
+
+
     @PostMapping
     public ResponseEntity<PostCreateResponse> create(@RequestBody PostCreateRequest request) {
         return ResponseEntity.ok(postService.create(request));
