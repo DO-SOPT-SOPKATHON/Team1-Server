@@ -2,16 +2,21 @@ package sopkathon.team1.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import sopkathon.team1.dto.request.PostCreateRequest;
+import sopkathon.team1.dto.response.PostCreateResponse;
+import sopkathon.team1.dto.response.PostGetResponse;
+import sopkathon.team1.exception.ResultCode;
+import sopkathon.team1.exception.ResultResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import sopkathon.team1.dto.request.PostCreateRequest;
-import sopkathon.team1.dto.response.PostCreateResponse;
 import sopkathon.team1.dto.response.PostResponse;
 import sopkathon.team1.service.PostService;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,6 +29,10 @@ public class PostController {
         return ResponseEntity.ok(postService.getPostById(postId));
     }
 
+    @GetMapping("/category/{categoryId}")
+    public ResultResponse<List<PostGetResponse>> getPosts(@PathVariable("categoryId") Long categoryId){
+        return ResultResponse.of(ResultCode.GET_POSTS_SUCCESS, postService.getPosts(categoryId));
+    }
     @GetMapping("/random")
     public ResponseEntity<PostResponse> getRandomPost() {
         return ResponseEntity.ok(postService.getRandomPost());
@@ -34,4 +43,5 @@ public class PostController {
     public ResponseEntity<PostCreateResponse> create(@RequestBody PostCreateRequest request) {
         return ResponseEntity.ok(postService.create(request));
     }
+
 }
