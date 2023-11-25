@@ -31,7 +31,19 @@
 
   <br />
 
+## 팀원 소개
+
+#### 박희정
+- GET 일기 단건 조회
+- GET 일기 랜덤 단건 조회
+- POST 리뷰 추가
+#### 이혜연
+- POST 일기 추가
+- GET 카테고리 일기 리스트 조회
+
   
+    <br />
+    
 ## 🌳 Branch
 
 `main branch` : 배포 단위 브랜치
@@ -81,3 +93,12 @@
 - 클래스는 필요한 책임만 할당한다  <br>
 
 </div>
+
+
+## 🛠️ Tech
+- Spring	3.1.6
+- AWS RDS(MySQL)
+- AWS EC2(Ubuntu)
+- Gradle
+- MySQL Workbench
+- Java version	Java 17
